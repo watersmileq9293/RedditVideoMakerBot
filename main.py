@@ -1,7 +1,6 @@
 #!/usr/bin/env python
-
 from subprocess import Popen
-from dotenv import load_dotenv
+import toml
 from os import getenv, name
 from reddit.subreddit import get_subreddit_threads
 from utils.cleanup import cleanup
@@ -22,8 +21,7 @@ print(
 ██████╔╝█████╗  ██║  ██║██║  ██║██║   ██║       ██║   ██║██║██║  ██║█████╗  ██║   ██║    ██╔████╔██║███████║█████╔╝ █████╗  ██████╔╝
 ██╔══██╗██╔══╝  ██║  ██║██║  ██║██║   ██║       ╚██╗ ██╔╝██║██║  ██║██╔══╝  ██║   ██║    ██║╚██╔╝██║██╔══██║██╔═██╗ ██╔══╝  ██╔══██╗
 ██║  ██║███████╗██████╔╝██████╔╝██║   ██║        ╚████╔╝ ██║██████╔╝███████╗╚██████╔╝    ██║ ╚═╝ ██║██║  ██║██║  ██╗███████╗██║  ██║
-╚═╝  ╚═╝╚══════╝╚═════╝ ╚═════╝ ╚═╝   ╚═╝         ╚═══╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
-"""
+╚═╝  ╚═╝╚══════╝╚═════╝ ╚═════╝ ╚═╝   ╚═╝         ╚═══╝  ╚═╝╚═════╝ ╚══════╝ ╚═════╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝"""
 )
 # Modified by JasonLovesDoggo
 print_markdown(
@@ -32,16 +30,14 @@ print_markdown(
 
 
 def main():
+    config = toml.load("config.toml")
+    print(config)
+    exit()
     if check_env() is not True:
         exit()
-    load_dotenv()
     cleanup()
 
-    def get_obj():
-        reddit_obj = get_subreddit_threads()
-        return reddit_obj
-
-    reddit_object = get_obj()
+    reddit_object = get_subreddit_threads()
     length, number_of_comments = save_text_to_mp3(reddit_object)
     download_screenshots_of_reddit_posts(reddit_object, number_of_comments)
     download_background()
@@ -52,7 +48,11 @@ def main():
 def run_many(times):
     for x in range(1, times + 1):
         print_step(
-            f'on the {x}{("st" if x == 1 else ("nd" if x == 2 else ("rd" if x == 3 else "th")))} iteration of {times}'
+            "on the "
+            + x
+            + ("st" if x == 1 else ("nd" if x == 2 else ("rd" if x == 3 else "th")))
+            + " iteration of "
+            + times
         )  # correct 1st 2nd 3rd 4th 5th....
         main()
         Popen("cls" if name == "nt" else "clear", shell=True).wait()

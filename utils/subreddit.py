@@ -28,7 +28,6 @@ def get_subreddit_undone(submissions: List, subreddit):
 
 
 def already_done(done_videos: list, submission):
-
     for video in done_videos:
         if video["id"] == str(submission):
             return True

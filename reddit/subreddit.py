@@ -46,9 +46,7 @@ def get_subreddit_threads():
         passkey=passkey,
         check_for_async=False,
     )
-    """
-	Ask user for subreddit input
-	"""
+
     print_step("Getting subreddit threads...")
     if not getenv(
         "SUBREDDIT"

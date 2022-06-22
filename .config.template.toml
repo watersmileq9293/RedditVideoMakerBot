@@ -1,0 +1,30 @@
+# This is the TEMPLATE configuration file, used
+
+# the current syntax for def
+
+
+[reddit.creds]
+client_id = { optional = false, example = "fFAGRNJru2FTz70BzhT3Zg", explanation = "the Oauth2 ID of your Reddit app of SCRIPT type", regex = "^[-a-zA-Z0-9._~+/]+=*$", nmin = 12, nmax = 30, oob_error = "The ID should be over 12 and under 30 characters, double check your input.", input_error = "The ID cannot contain characters outside the ASCII set/unprintable characters" }
+client_secret = { optional = false, example = "fFAGRNJru1FTz70BzhT3Zg", explanation = "the Oauth2 secret of your Reddit app of SCRIPT type", regex = "^[-a-zA-Z0-9._~+/]+=*$", nmin = 20, nmax = 40, oob_error = "The secret should be over 20 and under 40 characters, double check your input.", input_error = "The secret cannot contain characters outside the ASCII set/unprintable characters" }
+username = { optional = false, example = "asdfghjkl", explanation = "the username of your reddit account", regex = "^[_0-9a-zA-Z]+$", nmin = 3, nmax = 20, oob_error = "A username HAS to be between 3 and 20 characters", input_error = "The username cannot contain characters outside the ASCII set/unprintable characters" }
+password = { optional = false, example = "u1FTz70BzhT3Zg", explanation = "the password of your reddit account", nmin = 8, oob_error = "A password cannot be under 8 characters" }
+2fa = { optional = true, default = "no", example = "yes", regex = "^(yes|no)$", explanation = "Whether you have Reddit 2FA enabled, Valid options are 'yes' and 'no'", input_error = "2fa can only be set to 'yes' or 'no'" }
+
+
+[reddit.thread]
+random_thread = { optional = true, default = "no", example = "yes", regex = "^(yes|no)$", explanation = "Whether to randomize the thread selection, or ask for the thread interactively", input_error = "Random thread can only be set to 'yes' or 'no'" }
+subreddit = { optional = false, example = "AskReddit", regex = "^[_0-9a-zA-Z]+$", input_error = "2fa can only be set to 'yes' or 'no'", explanation = "what subreddit to pull posts from, the name of the sub, not the URL", nmin = 3, nmax = 20, oob_error = "A subreddit name HAS to be between 3 and 20 characters" }
+post_id = { optional = true, default = "", example = "kljsdfhn", regex = "^((?!://|://).)*$", input_error = "Use the post ID, not the URL.", explanation = "Used if you want to use a specific post" }
+max_comment_length = { optional = true, default = 500, example = 500, nmin = 0, nmax = 10000, type = "int", input_error = "Use the post ID, not the URL.", explanation = "max number of characters a comment can have. default is 500", oob_error = "the max comment length should be between 0 and 10000" }
+
+
+[settings]
+allow_nsfw = { optional = true, default = "yes", example = "yes", regex = "^(yes|no)$", explanation = "Whether to allow NSFW content, True or False", input_error = "allow_nsfw can only be set to 'yes' or 'no'" }
+theme = { optional = true, default = "light", example = "dark", explanation = "sets the Reddit theme, either LIGHT or DARK", regex = "^(dark|light|DARK|LIGHT)$", input_error = "the theme can only be light or dark" }
+times_to_run = { optional = true, default = 1, example = "2", explanation = "used to queue multiple runs. set to an integer e.g. 4 or 29 and leave blank for 1", type = "int", nmin = 1, oob_error = "You can't run the bot less than once", input_error = "This has be an integer above 1." }
+opacity = { optional = true, default = 1, example = "0.9", explanation = "Sets the opacity of the comments when overlayed over the background", type = "float", nmin = 0, nmax = 1, oob_error = "The opacity HAS to be between 0 and 1", input_error = "the opacity HAS to be a decimal number between 0 and 1" }
+storymode = { optional = true, default = false, example = "False" }
+
+
+tts.voice = { example = "en_us_002", explanation = "sets the voice the TTS uses" }
+tts.choice = { example = "polly", explanation = "the backend used for TTS, default is polly" }

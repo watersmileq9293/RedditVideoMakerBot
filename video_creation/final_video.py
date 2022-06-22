@@ -40,7 +40,7 @@ def make_final_video(number_of_clips, length):
     # Gather all audio clips
     audio_clips = []
     for i in range(0, number_of_clips):
-        audio_clips.append(AudioFileClip(f"assets/temp/mp3/{i}.mp3"))
+        audio_clips.append(AudioFileClip("assets/temp/mp3/" + i + ".mp3"))
     audio_clips.insert(0, AudioFileClip("assets/temp/mp3/title.mp3"))
     audio_concat = concatenate_audioclips(audio_clips)
     audio_composite = CompositeAudioClip([audio_concat])
@@ -50,7 +50,7 @@ def make_final_video(number_of_clips, length):
     # round total_length to an integer
     int_total_length = round(total_length)
     # Output Length
-    console.log(f"[bold green] Video Will Be: {int_total_length} Seconds Long")
+    console.print(f"[bold green] Video Will Be: {int_total_length} Seconds Long")
 
     # add title to video
     image_clips = []
